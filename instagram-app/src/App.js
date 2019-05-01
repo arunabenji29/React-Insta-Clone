@@ -10,7 +10,8 @@ class App extends React.Component {
     super();
     this.state = {
       data:[],
-      searchResult:[]
+      searchResult:[],
+      searchField:''
     }
     console.log('App:constructor running')
   }
@@ -19,28 +20,36 @@ class App extends React.Component {
     console.log('App:CDM running')
     this.setState({
       data:dummyData,
-      searchResult:[]
+      searchResult:[],
+      searchField:''
     })
-    // console.log(this.state.data)
+    
     
   }
 
-  // componentDidUpdate(){
-  //   console.log('App: CDU Update')
-  // }
-
-  addSearch = item => {
+ searchHandle = (event) => {
+    console.log('search content '+event.target.value)
     this.setState({
-      searchResult:item
-
-      })
-
-      console.log('add search in App '+this.state.searchResult)
-    
-  }
+        searchField: event.target.value
+    })
+    console.log('search handle ' + this.state.searchField)
+}
 
 
-  render(){
+searchSubmit = (event) => {
+  event.preventDefault();
+
+  let matched = this.state.data.filter(post => post.username.includes(this.state.searchField))
+  
+  this.setState({
+      searchResult: matched
+  })
+
+  console.log('search result ' + this.state.searchResult)
+
+}
+
+ render(){
     console.log('App:rendering')
     if(this.state.searchResult.length === 0) {
     return (
@@ -62,7 +71,10 @@ class App extends React.Component {
           return (
             <div className="App">
              
-              <SearchBar userProp={this.state}/>
+              <SearchBar 
+              searchHandleProp={this.searchHandle} 
+              searchSubmitProp={this.searchSubmit} 
+              fieldProp={this.state.searchField}/>
               
               
               {this.state.searchResult.map(data => (
