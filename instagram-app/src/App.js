@@ -10,7 +10,7 @@ class App extends React.Component {
     super();
     this.state = {
       data:[],
-      
+      searchResult:[]
     }
     console.log('App:constructor running')
   }
@@ -28,21 +28,50 @@ class App extends React.Component {
     console.log('App: CDU Update')
   }
 
+  addSearch = item => {
+    this.setState({
+      searchResult:item
+
+      })
+
+      console.log('add search in App '+this.state.searchResult)
+    
+  }
+
+
   render(){
     console.log('App:rendering')
+    if(this.state.searchResult.length === 0) {
     return (
       <div className="App">
        
-        <SearchBar />
+        <SearchBar userProp={this.state}/>
         
         
-        {this.state.data.map(data => (
+        {this.state.data.map((data,index) => (
         
-          <PostContainer dataProp={data}/> 
+          <PostContainer key={index} dataProp={data}/> 
         ))}
         
       </div>
     );
+        }
+
+        else{
+          return (
+            <div className="App">
+             
+              <SearchBar userProp={this.state}/>
+              
+              
+              {this.state.searchResult.map(data => (
+              
+                <PostContainer dataProp={data}/> 
+              ))}
+              
+            </div>
+          );
+        }
   }
   
 }
