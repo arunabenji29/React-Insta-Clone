@@ -10,34 +10,35 @@ class PostContainer extends React.Component {
         this.state = {
             allComments: this.props.dataProp.comments,
             commentField:'',
-            objectComment: {
+            heartCount:this.props.dataProp.likes
+            // objectComment: {
                 
-                text:'',
-                username:'',
-            },
+            //     text:'',
+            //     username:'',
+            // },
 
         }
-        console.log('Post container ' + this.state.allComments)
+        // console.log('Post container ' + this.state.allComments)
     }
 
     commentHandle = event => {
         this.setState({
             commentField: event.target.value
         })
-        console.log('comment handle '+this.state.commentField)
+        // console.log('comment handle '+this.state.commentField)
     }
 
     commentSubmit = (event) => {
         event.preventDefault();
         let commentSplit = this.state.commentField.split(' ')
-        console.log('username '+commentSplit[0])
-        console.log('text '+ commentSplit.slice(1,commentSplit.length).join(' '))
+        // console.log('username '+commentSplit[0])
+        // console.log('text '+ commentSplit.slice(1,commentSplit.length).join(' '))
         this.setState({
-            objectComment:{
-                text:commentSplit.slice(1,commentSplit.length).join(' '),
-                username:commentSplit[0],
+            // objectComment:{
+            //     text:commentSplit.slice(1,commentSplit.length).join(' '),
+            //     username:commentSplit[0],
                 
-            },
+            // },
             allComments: [...this.state.allComments, {
                 text:commentSplit.slice(1,commentSplit.length).join(' '),
                 username:commentSplit[0],
@@ -51,8 +52,18 @@ class PostContainer extends React.Component {
             // }
         })
         
-        console.log('comment submit ' + this.state.objectComment.username)
-        console.log('comment submit ' + this.state.objectComment.text)
+        // console.log('comment submit ' + this.state.objectComment.username)
+        // console.log('comment submit ' + this.state.objectComment.text)
+    }
+
+    updateHeartCount = () => {
+        let count = this.state.heartCount
+        console.log('current count '+this.state.heartCount)
+        console.log('like count ' + count)
+        this.setState({
+            heartCount:count+1
+        })
+    
     }
 
     render() {
@@ -75,10 +86,10 @@ class PostContainer extends React.Component {
 
 
                 <div className='below-img'>
-                    <i className="far fa-heart" ></i>
+                    <i className="far fa-heart" onClick = {this.updateHeartCount}></i>
                     <i className="far fa-comments"></i>
 
-                    <div className='p-tag'>{this.props.dataProp.likes} likes</div>
+                    <div className='p-tag' >{this.state.heartCount} likes</div>
 
                     {/* {props.dataProp.comments.map(eachComment => (
                             <CommentSection eachCommentProp={eachComment} />

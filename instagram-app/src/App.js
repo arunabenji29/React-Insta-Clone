@@ -18,15 +18,16 @@ class App extends React.Component {
   componentDidMount(){
     console.log('App:CDM running')
     this.setState({
-      data:dummyData
+      data:dummyData,
+      searchResult:[]
     })
-    console.log(this.state.data)
+    // console.log(this.state.data)
     
   }
 
-  componentDidUpdate(){
-    console.log('App: CDU Update')
-  }
+  // componentDidUpdate(){
+  //   console.log('App: CDU Update')
+  // }
 
   addSearch = item => {
     this.setState({

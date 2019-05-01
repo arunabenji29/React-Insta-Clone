@@ -1,67 +1,89 @@
 import React from 'react'
 import './searchBar.css'
 
-class SearchBar extends React.Component{
-    constructor(){
-        super();
-        this.state={
-            userMatch:[],
-            searchField:''
+class SearchBar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userMatch: [],
+            searchField: '',
+            // heartCount:this.props.userProp.data.likes
         }
+        // console.log(this.props)
     }
 
-    searchHandle = (event)=>{
+    // let heartCount = 0;
+
+    // updateHeartCount = () => {
+    //     heartCount++
+    //     this.props.userProp.data.likes = heartCount
+    
+    // }
+
+    searchHandle = (event) => {
+        console.log('search content '+event.target.value)
         this.setState({
-            searchField:event.target.value
+            searchField: event.target.value
         })
-        console.log('search handle '+this.state.searchField)
+        // console.log('search handle ' + this.state.searchField)
     }
 
-    searchSubmit = () => {
-        let matched = this.userProp.data.filter(post => post.username.includes(this.state.searchField))
+    searchSubmit = (event) => {
+        event.preventDefault();
+        console.log('props in searchSubmit '+this.props.userProp.data.username)
+        console.log('search handle ' + this.state.searchField)
+
+        console.log('search prop data '+this.props.userProp.data.username)
+        let matched = this.props.userProp.data.filter(post => post.username.includes(this.state.searchField))
+        
+        console.log('matched '+matched.username)
+
         this.setState({
-            userMatch:matched
+            userMatch: matched
         })
+
+        console.log('userMatch '+this.state.userMatch)
+
         console.log('search Submit ' + this.state.searchField)
-        this.props.userProp.searchResult.addSearch(this.state.userMatch)
-        console.log('search result transferred to this.state.searchfield in App'+this.props.userProp.searchField)
+        this.props.addSearch(this.state.userMatch)
+        console.log('search result transferred to this.state.searchfield in App' + this.props.userProp.searchField)
 
     }
 
-    render(){
+    render() {
         return (
             <div className='search-bar'>
-            <div className='left'>
-                <div className='logo'>
-                    
-                    <i className="fab fa-instagram"></i>
+                <div className='left'>
+                    <div className='logo'>
+
+                        <i className="fab fa-instagram"></i>
+                    </div>
+                    <p className='logo-text'><strong>Instagram</strong></p>
                 </div>
-                <p className='logo-text'><strong>Instagram</strong></p>
+
+
+                <form onSubmit={this.searchSubmit}>
+                    <input
+                        placeholder='&#128269;Search'
+                        value={this.state.searchField}
+                        onChange={this.searchHandle} />
+                </form>
+
+                <div className='right'>
+                    <div className='compass'>
+                        <i className="far fa-compass"></i>
+
+                    </div>
+                    <div className='heart'>
+                        <i className="far fa-heart" ></i>
+
+                    </div>
+                    <div className='person'>
+                        <i className="far fa-user"></i>
+
+                    </div>
+                </div>
             </div>
-
-            
-            <form onSubmit={this.searchSubmit}>
-            <input  
-            placeholder='&#128269;Search' 
-            value={this.state.searchField}
-            onChange={this.searchHandle}/>
-            </form>
-
-            <div className='right'>
-                <div className='compass'>
-                    <i className="far fa-compass"></i>
-                    
-                </div>
-                <div className='heart'>
-                <i className="far fa-heart"></i>
-                    
-                </div>
-                <div className='person'>
-                <i className="far fa-user"></i>
-                    
-                </div>
-            </div> 
-        </div>
         );
     }
 }
