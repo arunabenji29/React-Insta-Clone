@@ -4,9 +4,12 @@ const withAuthenticate = PostsPage => LoginPage =>
     class extends React.Component {
 
         render(){
-            if(true){
+            if(localStorage.getItem('user')){
 
                 return <PostsPage />
+            }
+            else{
+                return <LoginPage />
             }
 
         }
