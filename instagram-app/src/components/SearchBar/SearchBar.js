@@ -1,19 +1,60 @@
 import React from 'react'
 import './searchBar.css'
+import styled from 'styled-components'
+
+
+const InSearchBar = styled.div`
+    width:100%;
+    height:100px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    
+`
+
+const Left = styled.div`
+    height:100px;
+    display:flex;
+    align-items: center;
+`
+
+const Logo = styled.div`
+    margin-right: 10px;
+    
+    
+
+    // :hover{
+    //     background-color: pink;
+    //     border-radius:5px;
+    
+    // }
+`
+
+const LogoText = styled.p`
+    font-family: 'Dancing', cursive;
+    font-size:2rem;
+`
+
+const Right = styled.div`
+    display:flex;
+    align-items: center;
+
+    position:right;
+`
 
 
 const SearchBar = (props) => {
 
     console.log(props.userProp)
         return (
-            <div className='search-bar'>
-                <div className='left'>
-                    <div className='logo'>
+            <InSearchBar>
+                <Left>
+                    <Logo>
                         
                         <i className="fab fa-instagram"></i>
-                    </div>
-                    <p className='logo-text'><strong>Instagram</strong></p>
-                </div>
+                    </Logo>
+                    <LogoText><strong>Instagram</strong></LogoText>
+                </Left>
     
                <form onSubmit={props.searchSubmitProp}>
                      <input
@@ -22,7 +63,7 @@ const SearchBar = (props) => {
                         onChange={props.searchHandleProp} />
                 </form>
     
-                <div className='right'>
+                <Right>
                     <div className='compass'>
                         <i className="far fa-compass"></i>
                         
@@ -35,56 +76,11 @@ const SearchBar = (props) => {
                     <i className="far fa-user"></i>
                         
                     </div>
-                </div> 
-            </div>
+                </Right> 
+            </InSearchBar>
         );
     }
 
-// class SearchBar extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state={
 
-//         }
-//     }
-
-
-//     render() {
-//         return (
-//             <div className='search-bar'>
-//                 <div className='left'>
-//                     <div className='logo'>
-
-//                         <i className="fab fa-instagram"></i>
-//                     </div>
-//                     <p className='logo-text'><strong>Instagram</strong></p>
-//                 </div>
-
-
-//                 <form onSubmit={this.props.searchSubmitProp}>
-//                     <input
-//                         placeholder='&#128269;Search'
-//                         value={this.props.fieldProp}
-//                         onChange={this.props.searchHandleProp} />
-//                 </form>
-
-//                 <div className='right'>
-//                     <div className='compass'>
-//                         <i className="far fa-compass"></i>
-
-//                     </div>
-//                     <div className='heart'>
-//                         <i className="far fa-heart" ></i>
-
-//                     </div>
-//                     <div className='person'>
-//                         <i className="far fa-user"></i>
-
-//                     </div>
-//                 </div>
-//             </div>
-//         );
-//     }
-// }
 
 export default SearchBar

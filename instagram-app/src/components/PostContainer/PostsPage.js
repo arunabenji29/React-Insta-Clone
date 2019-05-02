@@ -48,11 +48,20 @@ class PostsPage extends React.Component{
     
       }
 
+      logoutSubmit = () => {
+        // console.log(event.target+ 'i was clicked');
+        localStorage.removeItem('user')
+        // this.setState({
+        //   this.props.isLoggedIn
+        // })
+      }
+
     render(){
         if (this.state.searchResult.length === 0) {
             return (
               <div className="App">
-      
+
+                <button onClick={this.logoutSubmit}>Logout</button>
                 <SearchBar
                   userProp={this.state.searchField}
                   searchSubmitProp={this.searchSubmit}

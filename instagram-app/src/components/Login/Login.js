@@ -43,7 +43,7 @@ class Login extends React.Component{
                             onChange={this.pwdHandle}
                         />
             
-                        <button onClick={this.loginSubmit}>login</button>
+                        <button onClick={this.loginSubmit}>login 🔑</button>
                     </form>
                 )
     }

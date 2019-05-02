@@ -1,7 +1,22 @@
 import React from 'react'
+import styled from 'styled-components'
 import CommentSection from '../CommentComponent/CommentSection';
 import './postContainer.css'
 import PropTypes from 'prop-types';
+
+const ThumbNail = styled.div`
+    width:5.5%;
+    margin-right:15px;
+`
+
+const ThumbNailImg = styled.img`
+    width:100%;
+    border-radius:50%;
+`
+
+const Username = styled.div`
+    font-size:22px;
+`
 
 class PostContainer extends React.Component {
 
@@ -11,40 +26,31 @@ class PostContainer extends React.Component {
             allComments: this.props.dataProp.comments,
             commentField:'',
             heartCount:this.props.dataProp.likes
-            // objectComment: {
-                
-            //     text:'',
-            //     username:'',
-            // },
+            
 
         }
-        // console.log('Post container ' + this.state.allComments)
+        
     }
 
     commentHandle = event => {
         this.setState({
             commentField: event.target.value
         })
-        // console.log('comment handle '+this.state.commentField)
+        
     }
 
     commentSubmit = (event) => {
         event.preventDefault();
         let commentSplit = this.state.commentField.split(' ')
-        // console.log('username '+commentSplit[0])
-        // console.log('text '+ commentSplit.slice(1,commentSplit.length).join(' '))
+        
         this.setState({
-            // objectComment:{
-            //     text:commentSplit.slice(1,commentSplit.length).join(' '),
-            //     username:commentSplit[0],
-                
-            // },
+            
             allComments: [...this.state.allComments, {
                 text:commentSplit.slice(1,commentSplit.length).join(' '),
                 username:commentSplit[0],
                 
             }],
-            // allComments:this.state.allComments.push(this.state.objectComment),
+            
             commentField: '',
             
         })
@@ -69,10 +75,10 @@ class PostContainer extends React.Component {
             <div className='post-container'>
 
                 <div className='user-display'>
-                    <div className='user-img'>
-                        <img src={this.props.dataProp.thumbnailUrl} alt='this is an img1' />
-                    </div>
-                    <p><strong>{this.props.dataProp.username}</strong></p>
+                    <ThumbNail>
+                        <ThumbNailImg src={this.props.dataProp.thumbnailUrl} alt='this is an img1' />
+                    </ThumbNail>
+                    <Username><strong>{this.props.dataProp.username}</strong></Username>
                 </div>
 
 
@@ -87,9 +93,7 @@ class PostContainer extends React.Component {
 
                     <div className='p-tag' >{this.state.heartCount} likes</div>
 
-                    {/* {props.dataProp.comments.map(eachComment => (
-                            <CommentSection eachCommentProp={eachComment} />
-                        ))} */}
+        
 
                     <CommentSection commentsProp={this.state.allComments} />
 

@@ -21,16 +21,4 @@ class CommentSection extends React.Component{
 }
 
 
-
-
-// const CommentSection = (props) => {
-//     return (
-//         <div className='comment-section'>
-//         {props.commentsProp.map(eachComment =>
-//             <p><strong>{eachComment.username}</strong>  {eachComment.text}</p>
-//             )}
-//         </div>
-       
-//     );
-// }
 export default CommentSection
