@@ -51,6 +51,7 @@ class PostsPage extends React.Component{
       logoutSubmit = () => {
         // console.log(event.target+ 'i was clicked');
         localStorage.removeItem('user')
+        window.location.reload();
         // this.setState({
         //   this.props.isLoggedIn
         // })
@@ -61,7 +62,7 @@ class PostsPage extends React.Component{
             return (
               <div className="App">
 
-                <button onClick={this.logoutSubmit}>Logout</button>
+                <button onClick={this.logoutSubmit}>Logout 👈</button>
                 <SearchBar
                   userProp={this.state.searchField}
                   searchSubmitProp={this.searchSubmit}

@@ -1,4 +1,5 @@
 import React from 'react'
+import './Login.css'
 
 class Login extends React.Component{
     constructor(){
@@ -29,21 +30,23 @@ class Login extends React.Component{
 
     render(){
         return (
-                    <form>
-                        <input
-                            placeholder='username'
+                    <form className='login-Form'>
+                        <input className="user"
+                            placeholder='username 🧐'
                             value={this.state.user}
                             onChange={this.userHandle}
                             
                         />
             
-                        <input
-                            placeholder='password'
+                        <input className="user"
+                            placeholder='password 🤫'
                             value={this.state.password}
                             onChange={this.pwdHandle}
                         />
             
-                        <button onClick={this.loginSubmit}>login 🔑</button>
+                        <button className="submit"
+                        onClick={this.loginSubmit}>
+                        login 🔑</button>
                     </form>
                 )
     }

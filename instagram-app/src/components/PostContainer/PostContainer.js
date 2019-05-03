@@ -41,13 +41,14 @@ class PostContainer extends React.Component {
 
     commentSubmit = (event) => {
         event.preventDefault();
-        let commentSplit = this.state.commentField.split(' ')
+        // let commentSplit = this.state.commentField.split(' ')
         
         this.setState({
             
             allComments: [...this.state.allComments, {
-                text:commentSplit.slice(1,commentSplit.length).join(' '),
-                username:commentSplit[0],
+                // text:commentSplit.slice(1,commentSplit.length).join(' '),
+                text:this.state.commentField,
+                username:localStorage.getItem('user'),
                 
             }],
             

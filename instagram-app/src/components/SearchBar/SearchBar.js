@@ -58,7 +58,7 @@ const SearchBar = (props) => {
     
                <form onSubmit={props.searchSubmitProp}>
                      <input
-                        placeholder='&#128269;Search'
+                        placeholder='Search 🔎 🔎 🔎 🔎 🔎'
                         value={props.userProp}
                         onChange={props.searchHandleProp} />
                 </form>
