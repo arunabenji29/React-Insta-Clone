@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 
 const InSearchBar = styled.div`
-    width:100%;
+    width:116%;
     height:100px;
     display:flex;
     justify-content: space-between;

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import CommentSection from '../CommentComponent/CommentSection';
 import './postContainer.css'
 import PropTypes from 'prop-types';
+import moment from 'moment'
 
 const ThumbNail = styled.div`
     width:5.5%;
@@ -69,6 +70,8 @@ class PostContainer extends React.Component {
     
     }
 
+
+
     render() {
         return (
 
@@ -94,11 +97,10 @@ class PostContainer extends React.Component {
 
                     <div className='p-tag' >{this.state.heartCount} likes</div>
 
-        
-
                     <CommentSection commentsProp={this.state.allComments} />
 
-                    <p className='date'>{this.props.dataProp.timestamp}</p>
+                    <p className='date'>
+                    {moment(this.props.dataProp.timestamp,'MMMM Do YYYY, h:mm:ss a').fromNow()}</p>
 
                     <form onSubmit={this.commentSubmit}>
                         <input
